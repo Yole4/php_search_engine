@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Percentage</title>
+    <link rel="icon" type="image/x-icon" href="../dist/img/dapitan-log.png">
+    <link rel="stylesheet" href="removeMe.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="back-button" style="margin-top: -100px;">
+            <button class="done">Done</button>
+        </div>
+
+        <div class="back-button" style="margin-top: 25px;" onclick="view()">
+            <button class="done" style="font-size: 20px;">Vew Similar Sentences</button>
+        </div>
+        <div class="bar">
+            <div class="outer_similarities">
+                <div class="inner_similarities">
+                    <div id="number">
+                    </div>
+                    <small>Similarities</small>
+                </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
+                <defs>
+                    <linearGradient id="Simi_Color">
+                        <stop offset="50%" stop-color="red" />
+                        <stop offset="100%" stop-color="blue" />
+                    </linearGradient>
+                </defs>
+                <circle cx="80" cy="80" r="70" stroke-linecap="round" />
+            </svg>
+        </div>
+        <div class="bar">
+            <div class="outer_differences">
+                <div class="inner_differences">
+                    <div id="dif"></div>
+                    <small>Originality</small>
+                </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
+                <defs>
+                    <linearGradient id="GradientColor">
+                        <stop offset="0%" stop-color="red" />
+                        <stop offset="50%" stop-color="blue">
+                    </linearGradient>
+                </defs>
+                <circle cx="80" cy="80" r="70" stroke-linecap="round" />
+            </svg>
+        </div>
+    </div>
+
+    <div id="loading" style="display: none;">
+        <div style="text-align: center; margin: 20px 20px 20px 20px;">
+            <span>Plagiarized detected every sentences</span>
+        </div>
+        <div class="similar-area"
+            style="text-align: left; color: red; margin: 0 20px 20px 20px; overflow-y: scroll; max-height: 430px; font-size:20px">
+            <p>$index. $sentence</p><a style=color:blue href=$linkInSentence>$linkInSentence</a><br /><br>;
+            <p style=color:lightblue; font-size:25px;>No similarities detected!</p>;
+
+        </div>
+        <div class="testHover" onclick="hide()">
+            <span>Close</span>
+        </div>
+    </div>
+
+    <script>
+        var max = document.getElementById("loading").clientHeight;
+        document.getElementById("scrollView").style.height = max + "px";
+        function hide() {
+            document.getElementById("loading").setAttribute("style", "display:none");
+        }
+
+        function view() {
+            document.getElementById("loading").setAttribute("style", "display:visible");
+        }
+    </script>
+
+    <script>
+        // originality
+        let number = document.getElementById("number");
+        let counter = -1;
+        setInterval(() => {
+            if (counter == 51){
+            clearInterval();
+        }else {
+            counter += 1;
+            number.innerHTML = counter + "%";
+        }
+    }, 25);
+        // Design for the differences
+        let dif = document.getElementById("dif");
+        let count = -1;
+        setInterval(() => {
+            if (count == 49){
+            clearInterval();
+        }else {
+            count += 1;
+            dif.innerHTML = count + "%";
+        }
+    }, 20);
+    </script>
+
+    <script>
+        // JavaScript code to navigate back when the back button is clicked
+        document.querySelector(".back-button").addEventListener("click", function () {
+            // window.history.back();
+            window.history.go(-2);
+        });
+    </script>
+
+</body>
+
+</html>
